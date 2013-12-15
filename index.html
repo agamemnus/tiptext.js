@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title> Tiptext Example </title>
+  <meta charset="utf-8" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <style type="text/css">
+   html, body {
+    width  : 100%;
+    height : 100%;
+   }
+   body {overflow: hidden}
+   .tiptext {
+    position         : absolute;
+    margin-top       : 40px;
+    margin-left      : 40px;
+    padding          : 10px;
+    font             : 20px Helvetica;
+    float            : left;
+    background-color : #6699cc;
+    color            : white;
+    display          : block;
+    z-index          : 1000;
+   }
+   .tiptext-short_length {
+    max-width : 15em;
+   } 
+   .test {
+    position         : relative;
+    margin           : 10px;
+    padding          : 20px;
+    color            : white;
+    font-family      : arial;
+    font-size        : 30px;
+    border           : 6px solid green;
+    background-color : green;
+    display          : inline-block;
+    cursor           : pointer;
+   }
+   .test:hover {
+    border-color : lightGreen;
+   }
+  </style>
+  <script type="text/javascript" src="tiptext-1.0.js"></script>
+  <script type="text/javascript">
+   window.addEventListener ('load', function () {
+    var tiptext = new Tiptext ({parent: document.body, initial_styling: function (tipdiv) {tipdiv.style.display = 'block'}})
+    // Test js div 1.
+    void function () {
+     var jsdiv1 = document.createElement ('div'); jsdiv1.className = "test"
+     jsdiv1.innerHTML = "Hello. I am a div created with Javascript!"
+     jsdiv1.setAttribute ('tiptext', 'Testing...')
+     document.body.appendChild (jsdiv1)
+    tiptext.set_tip_settings (jsdiv1, {instant: true})
+     var test_interval, n = 0
+     jsdiv1.addEventListener ('mouseover', function (evt) {
+      if (evt.currentTarget != evt.target) return
+      if (typeof test_interval != "undefined") {clearInterval (test_interval); test_interval = undefined}
+      n = 0
+      function increment_tip_text () {n += 1; jsdiv1.setAttribute ('tiptext', 'Testing... ' + (n / 10) + 's.')}
+      test_interval = setInterval (increment_tip_text, 100)
+      increment_tip_text ()
+     })
+     jsdiv1.addEventListener ('mouseout', function (evt) {
+      if (evt.currentTarget != evt.target) return
+      n = 0
+      if (typeof test_interval != "undefined") {clearInterval (test_interval); test_interval = undefined}
+     })
+    } ()
+
+    // Test js div 2.
+    void function () {
+     var jsdiv2 = document.createElement ('div'); jsdiv2.className = "test"
+     jsdiv2.innerHTML = "Hello. I am another div created with Javascript! (watch the console.log for my callbacks!)"
+     jsdiv2.setAttribute ('tiptext', 'JS div 2 here.')
+     tiptext.set_tip_settings (jsdiv2, {
+      show_delay   : 200,
+      hide_delay   : 300,
+      stick_delay  : 100,
+      show_start   : function (tiptext_obj) {console.log ('Show start.')},
+      show_end     : function (tiptext_obj) {tiptext_obj.tipdiv.style.display = "block"; console.log ('Show end.')},
+      show_process : basic_fade_function,
+      hide_start   : function (tiptext_obj) {console.log ('Hide start.')},
+      hide_end     : function (tiptext_obj) {tiptext_obj.tipdiv.style.display = "block"; console.log ('Hide end.')},
+      hide_process : basic_fade_function,
+     })
+     function basic_fade_function (tiptext_obj, n) {
+      if (n == 0) {tiptext_obj.tipdiv.style.opacity = 1; tiptext_obj.tipdiv.style.display = "none"; return}
+      if (tiptext_obj.tipdiv.style.display != "block") tiptext_obj.tipdiv.style.display = "block"
+      tiptext_obj.tipdiv.style.opacity = Math.floor(n * 100) / 100
+     }
+     document.body.appendChild (jsdiv2)
+    } ()
+   })
+  </script>
+ </head><body><div tiptext="Moo." class="test"> Hello. I am an inline div! </div></body></html>
