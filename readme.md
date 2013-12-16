@@ -1,7 +1,7 @@
 ﻿Tiptext.js v1.0
 ===============
 
-This plugin provides easy tip text functionality with mutation observers.
+This plugin provides easy floating tooltip functionality with mutation observers.
 Does not support IE under IE11. See http://caniuse.com/mutationobserver for details on browser compatibility. (Polyfills might work.)
 
 If you found this function useful, financial support is always appreciated: https://www.gittip.com/agamemnus/
