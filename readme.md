@@ -48,7 +48,7 @@ Full Usage
 Complete usage, with defaults and explanations:
 ````Javascript
 var tiptext = new Tiptext ({
- attribute_name : 'tiptext',
+ attribute_name  : 'tiptext',
  // The DOM attribute that should be referenced by the function.
  
  parent          : document.body,
