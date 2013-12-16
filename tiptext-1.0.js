@@ -59,6 +59,7 @@ function Tiptext (settings) {
  Object.defineProperty (this, 'current_process_ratio', {get: function () {return current_process_ratio}}) // Public getter for "current_process_ratio".
  var settings_test_on_init = ((typeof settings.test_on_init == "undefined") || (settings.test_on_init == true)) ? true : false // Should be internal only.
  var tip_last_hide_time = +new Date - 1000000
+ 
  function create_tip_event_listener (node) {
   node.addEventListener ('mouseover', show_tip)
   node.addEventListener ('mouseout' , remove_active_tip_on_mouseout)
@@ -79,6 +80,7 @@ function Tiptext (settings) {
   if (typeof tiptext_settings.show_process_timeout_time == "undefined") {if (typeof tiptext_obj.show_process_timeout_time != "undefined") tiptext_settings.show_process_timeout_time = tiptext_obj.show_process_timeout_time}
   if (typeof tiptext_settings.hide_process_timeout_time == "undefined") {if (typeof tiptext_obj.hide_process_timeout_time != "undefined") tiptext_settings.hide_process_timeout_time = tiptext_obj.hide_process_timeout_time}
  }
+ 
  function clear_process_timeout (showhide) {
   if (typeof tiptext_obj.current_process_timeout != "undefined") {
    clearTimeout (tiptext_obj.current_process_timeout)
@@ -86,6 +88,7 @@ function Tiptext (settings) {
   }
   current_process_callback = undefined
  }
+ 
  function begin_process_callback (current_node, showhide, end_func) {
   var tiptext_settings = current_node.tiptext_settings
   current_process_callback = tiptext_settings[showhide + '_process']
@@ -120,6 +123,7 @@ function Tiptext (settings) {
    end_func ()
   }
  }
+ 
  var show_tip = this.show_tip = function (evt) {
   if ((typeof evt.x != "undefined") && (typeof evt.y != "undefined") && (typeof evt.target != "undefined")) { // Manually fired show_tip.
    var current_node = evt.target
@@ -154,6 +158,7 @@ function Tiptext (settings) {
    show_end ()
   }
  }
+ 
  var remove_active_tip = this.remove_active_tip = function () {
   clear_process_timeout ()
   if (tipdiv.parentNode == null) return
@@ -192,13 +197,16 @@ function Tiptext (settings) {
   }
   if (tiptext_settings.stick_delay == 0) {hide_inner ()} else {tiptext_obj.current_process_timeout = setTimeout (hide_inner, tiptext_settings.stick_delay)}
  }
+ 
  function remove_active_tip_on_mouseout (evt) {
   if (evt.currentTarget.contains(evt.relatedTarget)) return
   remove_active_tip ()
  }
-  var set_active_tiptext = this.set_active_tiptext = function (tiptext) {
+ 
+ var set_active_tiptext = this.set_active_tiptext = function (tiptext) {
   tipdiv.innerHTML = tiptext
  }
+ 
  function update_tip_position (evt) {
   if ((typeof evt.x != "undefined") && (typeof evt.y != "undefined") && (typeof evt.target != "undefined")) {
    var xy = [evt.x, evt.y]
@@ -209,12 +217,14 @@ function Tiptext (settings) {
   tipdiv.style.left = xy[0] + 'px'
   tipdiv.style.top  = xy[1] + 'px'
  }
+ 
  parent.addEventListener ('mousemove', update_tip_position)
  this.destroy = function () {
   observer.disconnect ()
   remove_active_tip ()
   parent.removeEventListener ('mousemove', update_tip_position)
  }
+ 
  this.set_tip_settings = function (obj, new_settings) {
   if (typeof obj.tiptext_settings == "undefined") obj.tiptext_settings = {}
   var settings = obj.tiptext_settings
