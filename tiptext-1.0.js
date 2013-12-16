@@ -1,4 +1,4 @@
-﻿// Tiptext.js v1.0 (c) 2013 Michael Romanovsky.
+// Tiptext.js v1.0 (c) 2013 Michael Romanovsky.
 // Non-commercial usage and commercial usage with income of less than 5,000 USD a year: MIT license.
 // Commercial usage with income of 5,000 USD or more a year: contact me at: agamemnus@gmail.com to negotiate an appropriate license and fee.
 
@@ -224,12 +224,12 @@ function Tiptext (settings) {
   if (typeof new_settings.hide_delay     != "undefined") settings.hide_delay     = new_settings.hide_delay
   if (typeof new_settings.stick_delay    != "undefined") settings.stick_delay    = new_settings.stick_delay
   if (typeof new_settings.instant        != "undefined") settings.show_delay     = 0
-  if (typeof new_settings.show_start     != "undefined") settings.show_start     = new_settings.show_start
-  if (typeof new_settings.show_process   != "undefined") settings.show_process   = new_settings.show_process
-  if (typeof new_settings.show_end       != "undefined") settings.show_end       = new_settings.show_end
-  if (typeof new_settings.hide_start     != "undefined") settings.hide_start     = new_settings.hide_start
-  if (typeof new_settings.hide_process   != "undefined") settings.hide_process   = new_settings.hide_process
-  if (typeof new_settings.hide_end       != "undefined") settings.hide_end       = new_settings.hide_end
+  if ('show_start'   in new_settings) settings.show_start     = new_settings.show_start
+  if ('show_process' in new_settings) settings.show_process   = new_settings.show_process
+  if ('show_end'     in new_settings) settings.show_end       = new_settings.show_end
+  if ('hide_start'   in new_settings) settings.hide_start     = new_settings.hide_start
+  if ('hide_process' in new_settings) settings.hide_process   = new_settings.hide_process
+  if ('hide_end'     in new_settings) settings.hide_end       = new_settings.hide_end
   if (typeof new_settings.show_process_interval_time != "undefined") settings.show_process_interval_time = new_settings.show_process_interval_time
   if (typeof new_settings.hide_process_interval_time != "undefined") settings.hide_process_interval_time = new_settings.hide_process_interval_time
  }
