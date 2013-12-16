@@ -9,7 +9,7 @@ If you found this function useful, financial support is always appreciated: http
 Table of Contents
 -------------------------
 [Example](#example) <br/>
-[Why?](#why?) <br/>
+[Why?](#why) <br/>
 [License](#license) <br/>
 [Basic Usage](#basic-usage) <br/>
 [Full Usage](#full-usage) <br/>
