@@ -145,8 +145,8 @@ some_dom_element.setProperty (tiptext.tip_attribute_name, some_text_here)
 You can also modify what happens when tips are invoked (or revoked) for individual DOM elements via "tiptext.set_tip_settings (some_dom_element, settings)". The "settings" immediately above are largely the same as those of Tiptext, with two additions:
 
 1) className
-Sets a specific extra CSS class name in the form of [tip_attribute_name]-[className] on the tip when it's activated via the element.
-For example, if the className is "ultra", and the tip_attribute_name is "tiptext", the full CSS class string will be: "tiptext tiptext-ultra".
+Sets <br/>a specific extra CSS class name in the form of [tip_attribute_name]-[className] on the tip when it's activated via the element.
+<br/>For example, if the className is "ultra", and the tip_attribute_name is "tiptext", the full CSS class string will be: "tiptext tiptext-ultra".
 
 2) instant
-If it exists in the settings (does not matter what the value is, but you should probably use "true"), it will override the tip_show_delay to 0.
+<br/>If it exists in the settings (does not matter what the value is, but you should probably use "true"), it will override the tip_show_delay to 0.
