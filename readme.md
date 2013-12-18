@@ -1,4 +1,4 @@
-Tiptext.js v1.0
+Tiptext.js
 ===============
 
 This plugin provides easy floating tooltip functionality with mutation observers.
@@ -32,7 +32,7 @@ Because I'm paid by Microsoft to promote IE... But seriously, it allows you, the
 
 License
 -------------------------
-Tiptext.js v1.0 (c) 2013 Michael Romanovsky.
+Tiptext.js (c) 2013 Michael Romanovsky.
 <br/>Non-commercial usage and commercial usage with income of less than 5,000 USD a year: MIT license.
 <br/>Commercial usage with income of 5,000 USD or more a year: contact me at: agamemnus@gmail.com to negotiate an appropriate license and fee.
 
