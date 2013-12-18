@@ -1,4 +1,4 @@
-﻿Tiptext.js v1.0
+Tiptext.js v1.0
 ===============
 
 This plugin provides easy floating tooltip functionality with mutation observers.
