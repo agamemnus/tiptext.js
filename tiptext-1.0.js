@@ -159,7 +159,8 @@ function Tiptext (settings) {
   }
  }
  
- var remove_active_tip = this.remove_active_tip = function () {
+ var remove_active_tip = this.remove_active_tip = function (options) {
+  if (typeof options == "undefined") options = {}
   clear_process_timeout ()
   if (tipdiv.parentNode == null) return
   if (tip_current_target == null) return
@@ -189,13 +190,13 @@ function Tiptext (settings) {
   }
   function hide_inner () {
    if (typeof tiptext_settings.hide_start != "undefined") tiptext_settings.hide_start (tiptext_obj)
-   if (tiptext_settings.hide_delay == 0) {
+   if ((tiptext_settings.hide_delay == 0) || (options.instant)) {
     hide_end ()
    } else {
     hide_start_timeout ()
    }
   }
-  if (tiptext_settings.stick_delay == 0) {hide_inner ()} else {tiptext_obj.current_process_timeout = setTimeout (hide_inner, tiptext_settings.stick_delay)}
+  if ((tiptext_settings.stick_delay == 0) || (options.instant)) {hide_inner ()} else {tiptext_obj.current_process_timeout = setTimeout (hide_inner, tiptext_settings.stick_delay)}
  }
  
  function remove_active_tip_on_mouseout (evt) {
