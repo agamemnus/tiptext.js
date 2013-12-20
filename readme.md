@@ -132,8 +132,8 @@ Properties:
 // The current "process" ratio. READ-ONLY.
 // From 0 (start_process started or hide_process ended) to 1 (start_process ended or hide_process started).
 
-.remove_active_tip ()
-// Fires the tip hide event manually.
+.remove_active_tip (options)
+// Fires the tip hide event manually. Options can have a value of {instant: true}, which hides the tip immediately, ignoring stick delay and hide delay values.
 
 .destroy ()
 // Disconnects (stops) the mutation observer, removes the currently active tip from the parent, and removes the parent's mousemove event listener..
