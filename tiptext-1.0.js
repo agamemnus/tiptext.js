@@ -3,39 +3,39 @@
 // Commercial usage with income of 5,000 USD or more a year: contact me at: agamemnus@gmail.com to negotiate an appropriate license and fee.
 
 function Tiptext (settings) {
- var tiptext_obj = this
+ var tiptext_obj = {}
  if (typeof settings == "undefined") settings = {}
  var attribute_name  = (typeof settings.attribute_name != "undefined") ? settings.attribute_name : "tiptext"
  var parent          = (typeof settings.parent         != "undefined") ? settings.parent         : document.body
  // className is defaulted to the value of tiptext_obj.attribute_name.
- this.base_className = (typeof settings.base_className != "undefined") ? settings.base_className : attribute_name
+ tiptext_obj.base_className = (typeof settings.base_className != "undefined") ? settings.base_className : attribute_name
  // Activation delay in milliseconds.
- this.show_delay     = (typeof settings.show_delay     != "undefined") ? settings.show_delay     : 400
- this.hide_delay     = (typeof settings.hide_delay     != "undefined") ? settings.hide_delay     : 200
+ tiptext_obj.show_delay     = (typeof settings.show_delay     != "undefined") ? settings.show_delay     : 400
+ tiptext_obj.hide_delay     = (typeof settings.hide_delay     != "undefined") ? settings.hide_delay     : 200
  // If a maximum stick_delay of milliseconds passes from the moment a tip is hidden, and a new tip is set to be shown, the new tip show delay is 0.
- this.stick_delay    = (typeof settings.stick_delay    != "undefined") ? settings.stick_delay    : 500
- this.show_start     = ('show_start'   in settings) ? settings.show_start     : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 1}
- this.show_process   = ('show_process' in settings) ? settings.show_process   : undefined
- this.show_end       = ('show_end'     in settings) ? settings.show_end       : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 1; tiptext_obj.tipdiv.style.display = 'block'}
- this.hide_start     = ('hide_start'   in settings) ? settings.hide_start     : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 0}
- this.hide_process   = ('hide_process' in settings) ? settings.hide_process   : undefined
- this.hide_end       = ('hide_end'     in settings) ? settings.hide_end       : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 0; tiptext_obj.tipdiv.style.display = 'none'}
- this.show_process_timeout_time = (typeof settings.show_process_timeout_time != "undefined") ? settings.show_process_timeout_time : 25
- this.hide_process_timeout_time = (typeof settings.hide_process_timeout_time != "undefined") ? settings.hide_process_timeout_time : 25
+ tiptext_obj.stick_delay    = (typeof settings.stick_delay    != "undefined") ? settings.stick_delay    : 500
+ tiptext_obj.show_start     = ('show_start'   in settings) ? settings.show_start     : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 1}
+ tiptext_obj.show_process   = ('show_process' in settings) ? settings.show_process   : undefined
+ tiptext_obj.show_end       = ('show_end'     in settings) ? settings.show_end       : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 1; tiptext_obj.tipdiv.style.display = 'block'}
+ tiptext_obj.hide_start     = ('hide_start'   in settings) ? settings.hide_start     : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 0}
+ tiptext_obj.hide_process   = ('hide_process' in settings) ? settings.hide_process   : undefined
+ tiptext_obj.hide_end       = ('hide_end'     in settings) ? settings.hide_end       : function (tiptext_obj) {tiptext_obj.tipdiv.style.opacity = 0; tiptext_obj.tipdiv.style.display = 'none'}
+ tiptext_obj.show_process_timeout_time = (typeof settings.show_process_timeout_time != "undefined") ? settings.show_process_timeout_time : 25
+ tiptext_obj.hide_process_timeout_time = (typeof settings.hide_process_timeout_time != "undefined") ? settings.hide_process_timeout_time : 25
  
  var tip_current_target = null                                                                  // Private.
- Object.defineProperty (this, 'current_target', {get: function () {return tip_current_target}}) // Public getter for "tip_current_target" (NB: this.current_target).
+ Object.defineProperty (tiptext_obj, 'current_target', {get: function () {return tip_current_target}}) // Public getter for "tip_current_target" (NB: tiptext_obj.current_target).
  
- var tipdiv = this.tipdiv = document.createElement ('div')
+ var tipdiv = tiptext_obj.tipdiv = document.createElement ('div')
  tipdiv.style.pointerEvents = 'none'
  var settings_initial_styling = (typeof settings.initial_styling != "undefined") ? settings.initial_styling : function (tipdiv) {tipdiv.style.display = 'none'}
  settings_initial_styling (tipdiv)
  var current_process_timeout = undefined // Should be internal only.
  var current_action = null                                                                  // Private.
- Object.defineProperty (this, 'current_action', {get: function () {return current_action}}) // Public getter for "current_action".
+ Object.defineProperty (tiptext_obj, 'current_action', {get: function () {return current_action}}) // Public getter for "current_action".
  
  // Public getter and setter for "parent".
- Object.defineProperty (this, 'parent', {
+ Object.defineProperty (tiptext_obj, 'parent', {
   get: function () {return parent},
   set: function (new_parent) {
    observer.disconnect ()
@@ -48,15 +48,15 @@ function Tiptext (settings) {
  })
  
  // Public getter and setter for "attribute_name".
- Object.defineProperty (this, 'attribute_name', {
+ Object.defineProperty (tiptext_obj, 'attribute_name', {
   get: function () {return attribute_name},
   set: function (new_attribute_name) {observer.disconnect (); attribute_name = new_attribute_name; observer_initialize ()}
  })
  
  var current_process_callback = undefined                                                                       // Private.
- Object.defineProperty (this, 'current_process_callback', {get: function () {return current_process_callback}}) // Public getter for "current_process_callback".
+ Object.defineProperty (tiptext_obj, 'current_process_callback', {get: function () {return current_process_callback}}) // Public getter for "current_process_callback".
  var current_process_ratio  = 0                                                                           // Private.
- Object.defineProperty (this, 'current_process_ratio', {get: function () {return current_process_ratio}}) // Public getter for "current_process_ratio".
+ Object.defineProperty (tiptext_obj, 'current_process_ratio', {get: function () {return current_process_ratio}}) // Public getter for "current_process_ratio".
  var settings_test_on_init = ((typeof settings.test_on_init == "undefined") || (settings.test_on_init == true)) ? true : false // Should be internal only.
  var tip_last_hide_time = +new Date - 1000000
  
@@ -124,7 +124,7 @@ function Tiptext (settings) {
   }
  }
  
- var show_tip = this.show_tip = function (evt) {
+ var show_tip = tiptext_obj.show_tip = function (evt) {
   if ((typeof evt.x != "undefined") && (typeof evt.y != "undefined") && (typeof evt.target != "undefined")) { // Manually fired show_tip.
    var current_node = evt.target
   } else {
@@ -159,8 +159,7 @@ function Tiptext (settings) {
   }
  }
  
- var remove_active_tip = this.remove_active_tip = function (options) {
-  if (typeof options == "undefined") options = {}
+ var remove_active_tip = tiptext_obj.remove_active_tip = function () {
   clear_process_timeout ()
   if (tipdiv.parentNode == null) return
   if (tip_current_target == null) return
@@ -190,13 +189,13 @@ function Tiptext (settings) {
   }
   function hide_inner () {
    if (typeof tiptext_settings.hide_start != "undefined") tiptext_settings.hide_start (tiptext_obj)
-   if ((tiptext_settings.hide_delay == 0) || (options.instant)) {
+   if (tiptext_settings.hide_delay == 0) {
     hide_end ()
    } else {
     hide_start_timeout ()
    }
   }
-  if ((tiptext_settings.stick_delay == 0) || (options.instant)) {hide_inner ()} else {tiptext_obj.current_process_timeout = setTimeout (hide_inner, tiptext_settings.stick_delay)}
+  if (tiptext_settings.stick_delay == 0) {hide_inner ()} else {tiptext_obj.current_process_timeout = setTimeout (hide_inner, tiptext_settings.stick_delay)}
  }
  
  function remove_active_tip_on_mouseout (evt) {
@@ -204,7 +203,7 @@ function Tiptext (settings) {
   remove_active_tip ()
  }
  
- var set_active_tiptext = this.set_active_tiptext = function (tiptext) {
+ var set_active_tiptext = tiptext_obj.set_active_tiptext = function (tiptext) {
   tipdiv.innerHTML = tiptext
  }
  
@@ -220,13 +219,13 @@ function Tiptext (settings) {
  }
  
  parent.addEventListener ('mousemove', update_tip_position)
- this.destroy = function () {
+ tiptext_obj.destroy = function () {
   observer.disconnect ()
   remove_active_tip ()
   parent.removeEventListener ('mousemove', update_tip_position)
  }
  
- this.set_tip_settings = function (obj, new_settings) {
+ tiptext_obj.set_tip_settings = function (obj, new_settings) {
   if (typeof obj.tiptext_settings == "undefined") obj.tiptext_settings = {}
   var settings = obj.tiptext_settings
   if (typeof new_settings.base_className != "undefined") settings.base_className = new_settings.base_className
@@ -253,7 +252,7 @@ function Tiptext (settings) {
  
  // Create an observer instance.
  MutationObserver = MutationObserver || WebkitMutationObserver
- var observer = this.observer = new MutationObserver (function (mutation_list) {
+ var observer = tiptext_obj.observer = new MutationObserver (function (mutation_list) {
   for (var m = 0, curlen_m = mutation_list.length; m < curlen_m; m++) {
    var mutation = mutation_list[m]
    switch (mutation.type) {
@@ -371,4 +370,6 @@ function Tiptext (settings) {
    return transform_string
   }
  }
+ 
+ return tiptext_obj
 }
