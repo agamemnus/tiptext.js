@@ -23,7 +23,7 @@ function Tiptext (settings) {
  tiptext_obj.show_process_timeout_time = (typeof settings.show_process_timeout_time != "undefined") ? settings.show_process_timeout_time : 25
  tiptext_obj.hide_process_timeout_time = (typeof settings.hide_process_timeout_time != "undefined") ? settings.hide_process_timeout_time : 25
  
- var tip_current_target = null                                                                  // Private.
+ var tip_current_target = null                                                                         // Private.
  Object.defineProperty (tiptext_obj, 'current_target', {get: function () {return tip_current_target}}) // Public getter for "tip_current_target" (NB: tiptext_obj.current_target).
  
  var tipdiv = tiptext_obj.tipdiv = document.createElement ('div')
@@ -31,7 +31,7 @@ function Tiptext (settings) {
  var settings_initial_styling = (typeof settings.initial_styling != "undefined") ? settings.initial_styling : function (tipdiv) {tipdiv.style.display = 'none'}
  settings_initial_styling (tipdiv)
  var current_process_timeout = undefined // Should be internal only.
- var current_action = null                                                                  // Private.
+ var current_action = null                                                                         // Private.
  Object.defineProperty (tiptext_obj, 'current_action', {get: function () {return current_action}}) // Public getter for "current_action".
  
  // Public getter and setter for "parent".
@@ -53,9 +53,9 @@ function Tiptext (settings) {
   set: function (new_attribute_name) {observer.disconnect (); attribute_name = new_attribute_name; observer_initialize ()}
  })
  
- var current_process_callback = undefined                                                                       // Private.
+ var current_process_callback = undefined                                                                              // Private.
  Object.defineProperty (tiptext_obj, 'current_process_callback', {get: function () {return current_process_callback}}) // Public getter for "current_process_callback".
- var current_process_ratio  = 0                                                                           // Private.
+ var current_process_ratio  = 0                                                                                  // Private.
  Object.defineProperty (tiptext_obj, 'current_process_ratio', {get: function () {return current_process_ratio}}) // Public getter for "current_process_ratio".
  var settings_test_on_init = ((typeof settings.test_on_init == "undefined") || (settings.test_on_init == true)) ? true : false // Should be internal only.
  var tip_last_hide_time = +new Date - 1000000
