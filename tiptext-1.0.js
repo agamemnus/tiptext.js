@@ -125,7 +125,7 @@ function Tiptext (settings) {
  }
  
  var show_tip = tiptext_obj.show_tip = function (evt) {
-  if ((typeof evt.x != "undefined") && (typeof evt.y != "undefined") && (typeof evt.target != "undefined")) { // Manually fired show_tip.
+  if ((evt instanceof Event == false) && (typeof evt.x != "undefined") && (typeof evt.y != "undefined") && (typeof evt.target != "undefined")) { // Manually fired show_tip.
    var current_node = evt.target
   } else {
    var current_node = evt.currentTarget
@@ -208,7 +208,7 @@ function Tiptext (settings) {
  }
  
  function update_tip_position (evt) {
-  if ((typeof evt.x != "undefined") && (typeof evt.y != "undefined") && (typeof evt.target != "undefined")) {
+  if ((evt instanceof Event == false) && (typeof evt.x != "undefined") && (typeof evt.y != "undefined") && (typeof evt.target != "undefined")) {
    var xy = [evt.x, evt.y]
   } else {
    if (tip_current_target == null) return
@@ -247,11 +247,13 @@ function Tiptext (settings) {
  function mutation_check_added (current_node) {
   var tiptext = current_node.getAttribute (attribute_name)
   if ((tiptext == null) || (tiptext == "")) return
-  if ((typeof current_node.tiptext_settings == "undefined") || (typeof current_node.tiptext_settings.has_event_listener == "undefined")) create_tip_event_listener (current_node)
+  if ((typeof current_node.tiptext_settings == "undefined") || (typeof current_node.tiptext_settings.has_event_listener == "undefined")) {
+		 create_tip_event_listener (current_node)
+		}
  }
  
  // Create an observer instance.
- MutationObserver = MutationObserver || WebkitMutationObserver
+ var MutationObserver = window.MutationObserver || window.WebkitMutationObserver
  var observer = tiptext_obj.observer = new MutationObserver (function (mutation_list) {
   for (var m = 0, curlen_m = mutation_list.length; m < curlen_m; m++) {
    var mutation = mutation_list[m]
