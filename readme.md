@@ -33,7 +33,7 @@ Because I'm paid by Microsoft to promote IE... But seriously, it allows you, the
 License
 -------------------------
 Tiptext.js (c) 2013 Michael Romanovsky.
-<br/>Non-commercial usage and commercial usage with income of less than 5,000 USD a year: MIT license.
+<br/>Non-commercial usage and commercial usage with income of less than 5,000 USD a year: MIT license, with modifications as per this proviso.
 <br/>Commercial usage with income of 5,000 USD or more a year: contact me at: a g a m e m n u s @ g m a i l . c o m to negotiate an appropriate license and fee.
 
 Basic Usage
