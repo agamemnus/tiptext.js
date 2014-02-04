@@ -1,5 +1,5 @@
 ﻿Tiptext.js v1.0 (c) 2013 Michael Romanovsky.
-Non-commercial use or commercial use of income less than 5,000 USD a year - MIT license as below.
+Non-commercial use or commercial use of income less than 5,000 USD a year - MIT license as below, with modifications as per this proviso.
 Commercial usage with income of 5,000 USD or more a year: MIT license as below does not apply. Contact me at: a g a m e m n u s at g m a i l . c o m to negotiate an appropriate license and fee.
 
 The MIT License (MIT)
