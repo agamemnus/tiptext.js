@@ -212,7 +212,7 @@ function Tiptext (settings) {
    var xy = [evt.x, evt.y]
   } else {
    if (tip_current_target == null) return
-   var xy = getXY_zoom (evt, parent)
+   var xy = getXY (evt, parent)
   }
   tipdiv.style.left = xy[0] + 'px'
   tipdiv.style.top  = xy[1] + 'px'
