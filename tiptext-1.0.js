@@ -306,71 +306,9 @@ function Tiptext (settings) {
   }
  }
  
- function getXY_zoom (evt, target) {
+ function getXY (evt, target) {
   if (typeof target == "undefined") target = evt.target
-  if (typeof evt.pageX  != "undefined") {
-   var obj = findabspos_zoom (target)
-   return [evt.pageX - obj[0], evt.pageY - obj[1]]
-  }
-  if (typeof evt.offsetX != "undefined") return [evt.offsetX, evt.offsetY]
-  if (typeof evt.layerY  != "undefined") return [evt.layerX, evt.layerY]
- }
- 
- // Function to find the absolute position of a DOM object, taking CSS scale transforms into account.
- function findabspos_zoom (obj, lastobj) {
-  var curleft = 0, curtop = 0, zoom_level_x = 0, zoom_level_y = 0, borderWidthTest = 0
-  if (typeof lastobj == "undefined") lastobj = null
-  do {
-   if (obj.offsetParent == lastobj) {
-    zoom_level_x = 1; zoom_level_y = 1
-   } else {
-    zoom_level_x = getInheritedTransform(obj.offsetParent, {transform_type: "scale", xy: "x"})
-    zoom_level_y = getInheritedTransform(obj.offsetParent, {transform_type: "scale", xy: "y"})
-   }
-   borderWidthTest = parseFloat(getComputedStyle(obj).borderLeftWidth)
-   if (!isNaN(borderWidthTest)) curleft += borderWidthTest * zoom_level_x
-   borderWidthTest = parseFloat(getComputedStyle(obj).borderTopWidth)
-   if (!isNaN(borderWidthTest)) curtop += borderWidthTest * zoom_level_y
-   if (obj.offsetParent == lastobj) return [curleft, curtop] // If offsetParent is lastobj (or null if lastobj is null), return the result.
-   curleft += obj.offsetLeft * zoom_level_x
-   curtop  += obj.offsetTop  * zoom_level_y
-   obj = obj.offsetParent
-  } while (true)
- }
- 
- // Example usage: getInheritedTransform (obj, {transform_type:scale, xy:"x"})
- function getInheritedTransform (obj, init) {
-  var transform_type = init.transform_type
-  var xy             = init.xy
-  var transform_string = ""
-  var transform_array  = []
-  switch (transform_type) {
-   case "scale":
-    var scale = 1
-    while (true) {
-     transform_string = getTransformString ()
-     if (transform_string != false) {
-      transform_array = (transform_string.slice(7, transform_string.length - 6)).split(",")
-      switch (xy) {
-       case "x": scale *= parseFloat(transform_array[0]); break
-       case "y": scale *= parseFloat(transform_array[3]); break
-      }
-     }
-     var obj = obj.parentNode
-     if (obj.parentNode == null) break
-    }
-   return scale
-  }
-  
-  function getTransformString () {
-   var transform_string = window.getComputedStyle(obj)["Transform"]
-   if (typeof transform_string == "undefined") {transform_string = window.getComputedStyle(obj)["msTransform"]}
-   if (typeof transform_string == "undefined") {transform_string = window.getComputedStyle(obj)["webkitTransform"]}
-   if (typeof transform_string == "undefined") {transform_string = window.getComputedStyle(obj)["MozTransform"]}
-   if (typeof transform_string == "undefined") {transform_string = window.getComputedStyle(obj)["OTransform"]}
-   if ((typeof transform_string == "undefined") || (transform_string == "none")) return false
-   return transform_string
-  }
+  var rect = target.getBoundingClientRect(); return [evt.clientX - rect.left, evt.clientY - rect.top]
  }
  
  return tiptext_obj
