@@ -153,8 +153,8 @@ Properties:
 ````
 <br/>
 
-To add a tip to an element, either set its tiptext attribute in-line (in HTML), or via setProperty:
-`some_dom_element.setProperty (tiptext.tip_attribute_name, some_text_here)`.
+To add a tip to an element, either set its tiptext attribute in-line (in HTML), or via `setProperty`:
+<br/>`some_dom_element.setProperty (tiptext.tip_attribute_name, some_text_here)`.
 
 You can also modify Tiptext settings of individual DOM elements in Javascript via `tiptext.set_tip_settings (some_dom_element, settings)`. Two additional properties that are supported with this method:
 
