@@ -43,7 +43,7 @@ Because I'm paid by Microsoft to promote IE... But seriously, it allows you, the
 
 License
 --------
-Tiptext.js (c) 2015 Michael Romanovsky.
+Tiptext.js (c) 2013-2017 Michael Romanovsky.
 <br/>Non-commercial usage and commercial usage with income of less than 5,000 USD a year: MIT license, with modifications as per this proviso.
 <br/>Commercial usage with income of 5,000 USD or more a year: contact me at: agamemnus at gmail dot kom to negotiate an appropriate license and fee.
 
@@ -152,14 +152,15 @@ Properties:
 // Disconnects (stops) the mutation observer, removes the currently active tip from the parent, and removes the parent's mousemove event listener..
 ````
 <br/>
-To add a tip to an element, either set its tiptext attribute in-line (in HTML), or via setProperty:
-some_dom_element.setProperty (tiptext.tip_attribute_name, some_text_here)
 
-You can also modify what happens when tips are invoked (or revoked) for individual DOM elements via "tiptext.set_tip_settings (some_dom_element, settings)". The "settings" immediately above are largely the same as those of Tiptext, with two additions:
+To add a tip to an element, either set its tiptext attribute in-line (in HTML), or via setProperty:
+`some_dom_element.setProperty (tiptext.tip_attribute_name, some_text_here)`.
+
+You can also modify Tiptext settings of individual DOM elements in Javascript via `tiptext.set_tip_settings (some_dom_element, settings)`. There are two additions to these values:
 
 1) className
-Sets <br/>a specific extra CSS class name in the form of [tip_attribute_name]-[className] on the tip when it's activated via the element.
-<br/>For example, if the className is "ultra", and the tip_attribute_name is "tiptext", the full CSS class string will be: "tiptext tiptext-ultra".
+<br/>Sets a specific extra CSS class name in the form of `[tip_attribute_name]-[className]` on the tip when it's activated via the element.
+<br/>For example, if the className is `ultra`, and the tip_attribute_name is `tiptext`, the full CSS class string will be: `tiptext tiptext-ultra`.
 
-2) instant
-<br/>If it exists in the settings (does not matter what the value is, but you should probably use "true"), it will override the tip_show_delay to 0.
+2) `instant`
+<br/>If it exists in the settings (does not matter what the value is, but you should probably use "true"), this will override the `tip_show_delay` value to 0.
