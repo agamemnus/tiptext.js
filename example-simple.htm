@@ -42,6 +42,11 @@
    }
   </style>
   <script type="text/javascript" src="tiptext-1.0.js"></script>
+  <script type="text/javascript">
+   window.addEventListener ('load', function () {
+    var tiptext = new Tiptext ({parent: document.body, initial_styling: function (tipdiv) {tipdiv.style.display = 'block'}})
+   })
+  </script>
  </head>
  <body><div tiptext="Moo." class="test"> Hello. I am an inline div! </div></body>
  </html>
