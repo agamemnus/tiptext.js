@@ -104,7 +104,7 @@ var tiptext = new Tiptext ({
  // The time between hide_process calls, in milliseconds.
  
  test_on_init    : true,
- // Whether to test the parent and its descendants for appropriate tip attributes immediately. Defaults to to true
+ // Whether to test the parent and its descendants for appropriate tip attributes immediately. Defaults to to true.
  
  initial_styling : function (tipdiv) {tipdiv.style.display = 'none'}
  // Sets the initial styling of the tip div. Parameters(s): tipdiv.
@@ -122,8 +122,8 @@ Properties:
 // Re-setting this will re-initialize the event observer and re-initialize the mousemove event listener on the new parent.
 
 .base_className, .show_delay, .hide_delay, .stick_delay, .show_start, .show_process, .show_end,
-.hide_start, .hide_process, .hide_end, .show_process_timeout_time, ,hide_process_timeout_time
-// This is the default value given to elements when a new tip is added.
+.hide_start, .hide_process, .hide_end, .show_process_timeout_time, hide_process_timeout_time
+// The section above has default vcalues and explanations for these properties.
 
 .current_target
 // The current target of the tiptext. READ-ONLY. Use set_tip (see below) to set the tip target manually.
