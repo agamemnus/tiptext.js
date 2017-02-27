@@ -159,8 +159,7 @@ To add a tip to an element, either set its tiptext attribute in-line (in HTML), 
 You can also modify Tiptext settings of individual DOM elements in Javascript via `tiptext.set_tip_settings (some_dom_element, settings)`. Two additional properties that are supported with this method:
 
 1) `className`
-<br/>Sets a specific extra CSS class name in the form of `[tip_attribute_name]-[className]` on the tip when it's activated via the element.
-<br/>For example, if the className is `ultra`, and the tip_attribute_name is `tiptext`, the full CSS class string will be: `tiptext tiptext-ultra`.
+<br/>When the Tiptext object is activated, adds a CSS class name in the form of `[tip_attribute_name]-[className]`. For example, if the className is `ultra`, and the `tip_attribute_name` is `tiptext`, the full CSS class string for the element be: `tiptext tiptext-ultra`.
 
 2) `instant`
 <br/>Setting this property (to any value) will override the tip's individual show_delay property (`tip_show_delay`) to 0.
