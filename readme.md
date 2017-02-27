@@ -25,7 +25,7 @@ Table of Contents
 
 Example
 --------
-See [this example](http://agamemnus.github.io/tiptext.js/).
+See [this simple example](http://agamemnus.github.io/tiptext.js/example-simple.htm) or [this more involved example](http://agamemnus.github.io/tiptext.js/).
 
 
 Why?
