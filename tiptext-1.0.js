@@ -1,6 +1,6 @@
-// Tiptext.js v1.0 (c) 2013 Michael Romanovsky.
-// Non-commercial usage and commercial usage with income of less than 5,000 USD a year: MIT license.
-// Commercial usage with income of 5,000 USD or more a year: contact me at: agamemnus@gmail.com to negotiate an appropriate license and fee.
+// Tiptext.js v1.0 (c) 2013-2017 Michael Romanovsky.
+// Non-commercial usage and commercial usage with revenues of less than 5,000,000 USD a year: MIT license.
+// Commercial usage with revenues of 5,000,000 USD or more a year: contact me at: agamemnus at gmail to negotiate an appropriate license and fee.
 
 function Tiptext (settings) {
  var tiptext_obj = {}
